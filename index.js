@@ -16,7 +16,8 @@ const renderPermalink = (slug, opts, state, idx) => {
     Object.assign(new state.Token('link_open', 'a', 1), {
       attrs: [
         ['class', opts.permalinkClass],
-        ['href', opts.permalinkHref(slug, state)]
+        ['href', opts.permalinkHref(slug, state)],
+        ['id', slug]
       ]
     }),
     Object.assign(new state.Token('html_block', '', 0), { content: opts.permalinkSymbol }),
@@ -67,7 +68,6 @@ const anchor = (md, opts) => {
 
         if (slug == null) {
           slug = uniqueSlug(opts.slugify(title), slugs)
-          token.attrPush(['id', slug])
         }
 
         if (opts.permalink) {
